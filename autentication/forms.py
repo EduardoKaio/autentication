@@ -1,19 +1,14 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 from autentication.models import *
 
 
-class LoginForm(forms.Form): 
-  email = forms.EmailField(max_length=100, label='E-mail', widget=forms.TextInput(attrs={'class' : ' input-email', 'pattern' : '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'}))
-  Senha = forms.CharField( max_length=100, label='senha', widget=forms.TextInput(attrs={ 'class' : ''}))
+class CadastroForm(UserCreationForm):
+  first_name = forms.CharField(required=True)
+  phone = forms.CharField(required=True)
+  email = forms.EmailField(required=True)
 
-class CadastroForm(forms.ModelForm): 
-  
   class Meta:
-        model=Pessoa
-        fields= '__all__'   
-        
-        widgets = {  
-            'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.TextInput(attrs={'class': 'form-control'}),
-            'senha': forms.TextInput(attrs={'class': 'form-control'})
-             }
+    model = User
+    fields = ('first_name', 'username', 'email', 'phone', 'password1' ,'password2' )

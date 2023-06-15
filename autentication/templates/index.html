@@ -4,19 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Index</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Login</h1>
-    
-    <form action="{% url 'index' %}" method="post">
-        {% csrf_token %}
-            {{form}}
-        <input type="submit" value="Entrar">
-    </form>
-    <h1>Cadastro</h1>
-    
-
+<h1>INDEX</h1>
+<h3>Informações confidenciais</h3>
+<a href="{% url 'logout' %}">SAIR</a>
 </body>
 </html>
