@@ -8,20 +8,34 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth.forms import (
+    AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm,
+)
 
 def cadastro(request):
     mensagemErro = False
+    
     if request.method == 'POST':
         form_cadastro = CadastroForm(request.POST) 
-        if form_cadastro.is_valid():
-            form_cadastro.save()
-            messages.success(request, 'Conta criada com sucesso')
-            print('Salvou')
-            return redirect('logar_usuario')
+        data = request.POST["email"]
+        email = User.objects.filter(email=data)
+        
+        if email.exists():
+            messages.error(request, 'O Email está vinculado a outra conta!')            
+        
         else:
-            mensagemErro = True
-            print('Não salvou')
-    else:
+            if form_cadastro.is_valid():
+                form_cadastro.save()
+                messages.success(request, 'Conta criada com sucesso')
+                print('Salvou')
+                return redirect('logar_usuario')
+            else:
+
+                mensagemErro = True
+                print('Não salvou')
+    else: 
         form_cadastro = CadastroForm(request.POST)
     
     context = {'mensagemErro' : mensagemErro, 
@@ -54,6 +68,11 @@ def logar_usuario(request):
                'form_login' : form_login, }
     
     return render(request, 'logar_usuario.html', context)
+
+class PasswordResetConfirmView():
+    form_class = SetPasswordForm
+
+
 
 
 def logout_aplicacao(request):

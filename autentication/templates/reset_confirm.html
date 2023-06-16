@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Recuperar senha {% endblock %}	
+{% block main %}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'img/img-01.png' %}" alt="IMG">
+				</div>
+				
+				<form class="login100-form validate-form" method="post">
+                    {% csrf_token %}
+					<span class="login100-form-title">
+						Recuperar senha
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						
+						<input required class="input100" type="password" id="new_password1" name="new_password1" placeholder="Nova senha">
+						
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						
+						<input required class="input100" type="password" id="new_password2" name="new_password2" placeholder="Confirmar senha">
+						
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					{% if form.errors %}
+					<div class="alert alert-danger">
+						{{form.new_password1.errors}}
+						{{form.new_password2.errors}}
+					</div>
+					{% endif %}
+					
+					<div class="container-login100-form-btn">
+						<input type="submit" class="login100-form-btn" value="Alterar minha senha"> </input>
+					</div>
+                    <div class="text-center p-t-90">
+                                        
+                    </div>
+				</form>
+                
+			</div>
+		</div>
+	</div>
+{% endblock %}	
+	

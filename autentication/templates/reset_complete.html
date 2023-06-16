@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Recuperar senha {% endblock %}	
+{% block main %}
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="{% static 'img/img-01.png' %}" alt="IMG">
+            </div>
+            
+            <div class="login100-form validate-form">
+                <span class="login100-form-title">
+                    Redefinição de senha completa
+                </span>
+                <p class="text-log txt2">Sua senha foi definida. Você pode prosseguir e se autenticar agora.</p>
+                    <div class="text-center p-t-80">
+						<a class="txt2" href="{% url 'logar_usuario' %}"><i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
+							Ir para o login
+							
+						</a>
+					</div>
+                    
+                </div>
+            
+				
+        </div>
+    </div>
+</div>
+{% endblock %}	
