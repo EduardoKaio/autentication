@@ -16,13 +16,12 @@
 					<span class="login100-form-title">
 						LOGIN
 					</span>
-					{% if messages.sucess %}
-					{% for message.sucess in messages.sucess %}
-						<div class="alert alert-success">
-							{{ message.sucess }}
-						</div>
-						
-					{% endfor %}
+					{% if messages %}
+					<ul class="messages">
+						{% for message in messages %}
+						<li {% if message.tags %} class="alert alert-success"{% endif %}>{{ message }}</li>
+						{% endfor %}
+					</ul>
 					{% endif %}
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						

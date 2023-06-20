@@ -28,20 +28,22 @@ def cadastro(request):
         else:
             if form_cadastro.is_valid():
                 form_cadastro.save()
+            
                 messages.success(request, 'Conta criada com sucesso')
                 print('Salvou')
                 return redirect('logar_usuario')
             else:
-
                 mensagemErro = True
                 print('Não salvou')
+                return render(request, 'cadastro.html')
+    
     else: 
         form_cadastro = CadastroForm(request.POST)
     
     context = {'mensagemErro' : mensagemErro, 
                'form_cadastro' : form_cadastro, }
     
-    return render(request, 'cadastro.html',context)
+    return render(request, 'cadastro.html', context)
         
 
 def logar_usuario(request):

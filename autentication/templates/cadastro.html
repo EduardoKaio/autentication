@@ -12,7 +12,7 @@
 					<img src="{% static 'img/img-01.png' %}" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="post">
+				<form action="{% url 'cadastro' %}" class="login100-form validate-form" method="post">
                     {% csrf_token %}
 					<span class="login100-form-title">
 						CADASTRE-SE

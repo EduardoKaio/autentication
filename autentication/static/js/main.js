@@ -10,6 +10,7 @@ const handlePhone = (event) => {
     value = value.replace(/(\d)(\d{4})$/,"$1-$2")
     return value
   }
+ 
 
 // (function ($) {
 //     "use strict";
