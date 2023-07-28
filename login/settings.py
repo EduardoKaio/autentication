@@ -119,13 +119,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-<<<<<<< HEAD
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build', 'static')
-=======
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
->>>>>>> 9771c80cd18a84760d298cae968cf8756443c6de
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # Default primary key field type
