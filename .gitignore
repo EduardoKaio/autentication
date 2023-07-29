@@ -1,2 +1,4 @@
-venv
-.idea
+*.env
+bin/
+lib/
+*.sqlite3
