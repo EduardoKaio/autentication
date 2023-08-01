@@ -16,9 +16,10 @@ from django.contrib.auth.forms import (
 
 def cadastro(request):
     mensagemErro = False
+    form_cadastro = CadastroForm(request.POST or None)
     
-    if request.method == 'POST':
-        form_cadastro = CadastroForm(request.POST) 
+    if str(request.method) == 'POST':
+
         data = request.POST["email"]
         email = User.objects.filter(email=data)
         
@@ -28,21 +29,21 @@ def cadastro(request):
         else:
             if form_cadastro.is_valid():
                 form_cadastro.save()
-            
+                form_cadastro = CadastroForm()
                 messages.success(request, 'Conta criada com sucesso')
                 print('Salvou')
+
                 return redirect('logar_usuario')
             else:
                 mensagemErro = True
                 print('Não salvou')
-                return render(request, 'cadastro.html')
-    
-    else: 
-        form_cadastro = CadastroForm(request.POST)
+                form_cadastro = CadastroForm(request.POST)
+                context = {'mensagemErro' : mensagemErro, 
+                'form_cadastro' : form_cadastro, }
+                return render(request, 'cadastro.html', context)
     
     context = {'mensagemErro' : mensagemErro, 
-               'form_cadastro' : form_cadastro, }
-    
+                'form_cadastro' : form_cadastro, }
     return render(request, 'cadastro.html', context)
         
 
